@@ -30,75 +30,69 @@ class points3D
             return z;
         }
 
-        //Overloading binary operators + and -
-        points3D operator +(points3D point2)
+        //Overloading prefix versions of ++ and --
+        void operator ++(int)
         {
-            points3D temp;
-            temp.x = x + point2.x;
-            temp.y = y + point2.y;
-            temp.z = z + point2.z;
-
-            return temp; //return altered value
+            x++;
+            y++;
+            z++;
         }
 
-        points3D operator -(points3D point2)
+        void operator --(int)
         {
-           points3D temp;
-            temp.x = x - point2.x;
-            temp.y = y - point2.y;
-            temp.z = z - point2.z;
+            x--;
+            y--;
+            z--;
+        }
 
-            return temp; //return altered value
+        // overload of =
+        points3D operator = (points3D p2)
+        {
+            x = p2.x;
+            y = p2.y;
+            z = p2.z;
         }
 
 };
 
 int main()
 {
-    points3D pointA(2,5,9), pointB(3,4,7),pointC, pointD;
-
-    pointC = pointA + pointB;
-    pointD = pointA - pointB;
-
-    int x[4], y[4], z[4];
-    //points A
-    x[0] = pointA.getX();
-    y[0] = pointA.getY();
-    z[0] = pointA.getZ();
-
-    //points B
-    x[1] = pointB.getX();
-    y[1] = pointB.getY();
-    z[1] = pointB.getZ();
-
-    //points C
-    x[2] = pointC.getX();
-    y[2] = pointC.getY();
-    z[2] = pointC.getZ();
-
-    //points D
-    x[3] = pointD.getX();
-    y[3] = pointD.getY();
-    z[3] = pointD.getZ();
+    points3D pointA(2,5,9), pointB;
+    pointB = pointA;
 
 
-    cout << "\n\t Overload of + and - \n\n";
-    cout << "\t  " << setw(20) << left << "OBJECTS"
+
+    cout << "\n\t Prefix Overload of ++ (Point++)\n\n";
+    cout << "\t  " << setw(20) << left << "INCREMENTS"
             << setw(10) << left << "POINT X"
             << setw(10) << left << "POINT Y"
             << setw(15) << left << "POINT Z"<< endl;
     cout << "\t----------------------------------------------------------\n";
 
-    string obj[4] = {"PointA", "PointB", "Point A+B", "Point A-B"};
-    for (int i = 0; i<4; i++)
+    string obj[3] = {"Original", "First", "Second"};
+    for (int i = 0; i<3; i++)
     {
         cout << "\t  " << setw(20) << left << obj[i]
-                << setw(10) << left << x[i]
-                << setw(10) << left << y[i]
-               << setw(10) << left << z[i] << endl;
+                << setw(10) << left << pointA.getX()
+                << setw(10) << left << pointA.getY()
+               << setw(10) << left << pointA.getZ()<< endl;
         cout << "\t----------------------------------------------------------\n";
+        pointA++;
+    }
+
+    //-- overload
+
+    cout << "\n\t Original : PointB = PointA \n";
+    cout << "\n\t Prefix Overload of -- (Point--)\n\n";
+     for (int i = 0; i<3; i++)
+    {
+        cout << "\t  " << setw(20) << left << obj[i]
+                << setw(10) << left << pointB.getX()
+                << setw(10) << left << pointB.getY()
+               << setw(10) << left << pointB.getZ()<< endl;
+        cout << "\t----------------------------------------------------------\n";
+        pointB--;
     }
 
     return 0;
 }
-
