@@ -56,7 +56,7 @@ They allow access to private variables of the class they befriend
 | - title : string| - pubs : int ||
 | - dues: int | ||
 ||||
-| + getdata(): void | + getdata()(): void||
+| + getdata(): void | + getdata(): void||
 | + putdata(): void | + putdata(): void ||
 #
 
